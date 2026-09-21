@@ -41,7 +41,7 @@ public class SalesItem {
     }
 
     public String toString(){
-        String o = name + " " + price + " " + quantity;
+        String o = String.format("%-20s $%7.2f %5d", name, price, quantity);
         return o;
     }
 

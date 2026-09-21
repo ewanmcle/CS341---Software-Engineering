@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class Main {
 
@@ -78,24 +82,38 @@ public class Main {
 		
 		SalesSlip salesSlip = new SalesSlip();
 		JButton addItemBtn = new JButton("Add Item to Sales List");
-		addItemBtn.setBounds(95, 113, 254, 29);
+		addItemBtn.setBounds(95, 109, 254, 29);
 		frame.getContentPane().add(addItemBtn);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(51, 152, 345, 98);
-		frame.getContentPane().add(textArea);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(39, 140, 372, 101);
+		frame.getContentPane().add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
+		scrollPane.setViewportView(textPane);
+		
+		JLabel totalLabel = new JLabel("Total Sales");
+		totalLabel.setBounds(106, 250, 85, 16);
+		frame.getContentPane().add(totalLabel);
+		
+		JTextPane totalPane = new JTextPane();
+		totalPane.setBounds(203, 250, 179, 16);
+		frame.getContentPane().add(totalPane);
 
 		addItemBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// get user input
                 String name = itemTextField.getText();
                 double price = Double.valueOf(costTextField.getText());
                 int quantity = Integer.valueOf(quantityTextField.getText());
+                // add to salesSlip
                 salesSlip.add(name, quantity, price);
-                textArea.cut();
-                textArea.setText(salesSlip.toString());
+                // set text in the output boxes
+                textPane.setText(salesSlip.toString());
+                double total = salesSlip.computeSales();
+                totalPane.setText(String.format("$%.2f", total));
 			}
 		});
-		
 	}
 }

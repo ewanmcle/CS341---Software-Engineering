@@ -14,15 +14,18 @@ public class SalesSlip {
     }
 
     public double computeSales(){
-        
+
         Object[] arr = ss.toArray();
         double total = 0;
 
         for (int i = 0; i < arr.length; i++) {
             Object s = arr[i];
             double price = ((SalesItem) s).getPrice();
-            total += price;
+            int quantity = ((SalesItem) s).getQuantity();
+            total += (price * quantity);
         }
+
+        total = Math.round(total * 100.0) / 100.0;
 
         return total;
     }
