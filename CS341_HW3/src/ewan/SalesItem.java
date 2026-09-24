@@ -44,6 +44,7 @@ public class SalesItem {
         String o = String.format("%-20s $%7.2f %5d", name, price, quantity);
         return o;
     }
+    
 
 }
 

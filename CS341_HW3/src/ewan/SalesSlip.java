@@ -7,10 +7,8 @@ public class SalesSlip {
     LinkedList<SalesItem> ss = new LinkedList<SalesItem>();
 
     public void add(String n, int q, double p){
-
         SalesItem si = new SalesItem(n, q, p);
         ss.add(si);
-
     }
 
     public double computeSales(){

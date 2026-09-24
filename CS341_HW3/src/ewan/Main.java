@@ -8,10 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-import javax.swing.JScrollBar;
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 public class Main {
@@ -103,6 +100,7 @@ public class Main {
 
 		addItemBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				// get user input
                 String name = itemTextField.getText();
                 double price = Double.valueOf(costTextField.getText());
@@ -113,6 +111,7 @@ public class Main {
                 textPane.setText(salesSlip.toString());
                 double total = salesSlip.computeSales();
                 totalPane.setText(String.format("$%.2f", total));
+				} catch (Exception inputError) {}
 			}
 		});
 	}
